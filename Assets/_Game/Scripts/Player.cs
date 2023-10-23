@@ -22,7 +22,7 @@ public class Player : Character
 
         if (joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
-            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            //transform.rotation = Quaternion.LookRotation(rb.velocity);
         }
     }
 
