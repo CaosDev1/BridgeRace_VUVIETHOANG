@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConstString : MonoBehaviour
 {
-    public const string Player = "Player";
-    public const string Brick = "Brick";
+    public const string PLAYER_TAG = "Player";
+    public const string BRICK_TAG = "Brick";
+    public const string STAIR_TAG = "Stair";
 }
