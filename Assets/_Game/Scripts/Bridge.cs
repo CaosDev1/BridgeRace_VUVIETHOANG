@@ -7,14 +7,38 @@ public class Bridge : MonoBehaviour
     [SerializeField] private GameObject stairSkin;
     [SerializeField] private Material[] stairColor;
     [SerializeField] private MeshRenderer stairRender;
-    private bool isCollect = false;
+    [SerializeField] private ColorData stairColorData;
+    public bool isCollect = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(ConstString.PLAYER_TAG) && other.GetComponent<Player>().playerBrickList.Count != 0 && !isCollect)
+        if (other.CompareTag(ConstString.PLAYER_TAG) && other.GetComponent<Player>().playerBrickList.Count != 0)
         {
-            other.GetComponent<Player>().RemoveBrick();
-            stairSkin.SetActive(true);
-            isCollect = true;
+            if (!isCollect)
+            {
+                //Set mau gach = mau cua nguoi choi
+                stairColorData = other.GetComponent<Player>().colorPlayerData;
+                //Xoa gach cua nguoi choi
+                other.GetComponent<Player>().RemoveBrick();
+                //Doi mau stair giong moi mau cua nguoi choi
+                SetColor(stairColorData);
+                //Hien thi stair
+                stairSkin.SetActive(true);
+                //Set trang thai cho stair la da va cham roi
+                isCollect = true;
+            }
+            else if(stairColorData != other.GetComponent<Player>().colorPlayerData)
+            {
+                other.GetComponent<Player>().RemoveBrick();
+                stairColorData = other.GetComponent<Player>().colorPlayerData;
+                SetColor(stairColorData);
+            }
+            
         }
+    }
+
+    private void SetColor(ColorData colorData)
+    {
+        int index = (int)colorData;
+        stairRender.material = stairColor[index];
     }
 }
