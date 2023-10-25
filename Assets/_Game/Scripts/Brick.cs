@@ -2,14 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BrickColor
+public enum ColorData
 {
-    Red = 1,
-    Green = 2,
-    Blue = 3,
-    None = 4
+    Blue = 0,
+    Green = 1,
+    Red = 2,
+    None = 3
 }
 public class Brick : MonoBehaviour
 {
-    public BrickColor brickColor;
+    [SerializeField] private Material[] brickColor;
+    [SerializeField] private MeshRenderer renderBrick;
+    public ColorData colorData;
+
+    private void Start()
+    {
+        colorData = (ColorData)Random.Range(0, 3);
+        SetColor(colorData);
+        
+    }
+
+    private void SetColor(ColorData colorData)
+    {
+        int index = (int)colorData;
+        renderBrick.material = brickColor[index];
+    }
+
+    
 }

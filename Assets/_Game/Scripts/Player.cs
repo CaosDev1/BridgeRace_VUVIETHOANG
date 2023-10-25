@@ -1,21 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : Character
 {
+    [Header ("Move Info")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private VariableJoystick joystick;
     [SerializeField] private float moveSpeed;
-    private Vector3 moveVector;
     [SerializeField] private float rotateSpeed;
+    private Vector3 moveVector;
 
+    [Header ("Add Brick Info")]
     public List<Transform> playerBrickList;
     [SerializeField] private Transform playerBrickPrefab;
     [SerializeField] private Transform brickHolder;
 
-    [SerializeField] private LayerMask bridgeLayer;
-    [SerializeField] private float raycastDistance;
+    [Header("Color Player Info")]
+    [SerializeField] private Material[] colorPlayer;
+    public ColorData colorPlayerData;
+    [SerializeField] private MeshRenderer renderPlayer;
 
+    public static Player Instance;
+
+    private void Awake()
+    {
+        Instance= this;
+    }
+
+    private void Start()
+    {
+        SetColor(colorPlayerData);
+    }
     private void FixedUpdate()
     {
         Move();
@@ -60,20 +76,31 @@ public class Player : Character
         }
     }
 
-    public void CheckCollison()
+    private void SetColor(ColorData colorData)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.down,out hit, raycastDistance, bridgeLayer))
+        int index = (int)colorData;
+        renderPlayer.material = colorPlayer[index];
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<Brick>() != null)
         {
-            
+            Brick brick = other.GetComponent<Brick>();
+            if(colorPlayerData == brick.colorData)
+            {
+                AddBrick();
+            }
+            else
+            {
+                Debug.Log("Khac mau, ko nhat duoc");
+            }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - raycastDistance,transform.position.z));
-    }
 
-    
+
+
+
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bridge : MonoBehaviour
 {
     [SerializeField] private GameObject stairSkin;
+    [SerializeField] private Material[] stairColor;
+    [SerializeField] private MeshRenderer stairRender;
     private bool isCollect = false;
     private void OnTriggerEnter(Collider other)
     {

@@ -143,3 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stairSkin: {fileID: 5178939367815039956}
+  stairColor:
+  - {fileID: 2100000, guid: c926d3bf15d791b4e93e584b6c458351, type: 2}
+  - {fileID: 2100000, guid: b8f0d1bc6649d994eb60f500612398fd, type: 2}
+  - {fileID: 2100000, guid: 3c76d7fe6141e234e969dfba55fe5784, type: 2}
+  - {fileID: 2100000, guid: cb135edd388427344af2a012cc7806bb, type: 2}
+  stairRender: {fileID: 5178939367815039962}
