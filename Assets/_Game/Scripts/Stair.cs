@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bridge : MonoBehaviour
+public class Stair : MonoBehaviour
 {
     [SerializeField] private GameObject stairSkin;
     [SerializeField] private Material[] stairColor;
     [SerializeField] private MeshRenderer stairRender;
-    [SerializeField] private ColorData stairColorData;
+    public ColorData stairColorData;
     public bool isCollect = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -26,13 +26,13 @@ public class Bridge : MonoBehaviour
                 //Set trang thai cho stair la da va cham roi
                 isCollect = true;
             }
-            else if(stairColorData != other.GetComponent<Player>().colorPlayerData)
+            else if (stairColorData != other.GetComponent<Player>().colorPlayerData)
             {
                 other.GetComponent<Player>().RemoveBrick();
                 stairColorData = other.GetComponent<Player>().colorPlayerData;
                 SetColor(stairColorData);
             }
-            
+
         }
     }
 
