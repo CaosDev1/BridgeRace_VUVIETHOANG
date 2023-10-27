@@ -4371,7 +4371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2020651997}
-  offset: {x: 0, y: 0, z: 0}
   speed: 0
 --- !u!1001 &975240723
 PrefabInstance:
@@ -7245,8 +7244,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2020651997}
   - component: {fileID: 2020651996}
-  - component: {fileID: 2020651995}
   - component: {fileID: 2020651994}
+  - component: {fileID: 2020651998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7266,10 +7265,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3993c89fc587a564fb954905ffc99e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2020651995}
   joystick: {fileID: 578332497}
   moveSpeed: 6
   rotateSpeed: 10
+  inputCanvas: {fileID: 1042137528}
+  controller: {fileID: 2020651998}
   playerBrickList: []
   playerBrickPrefab: {fileID: 5250915033673549946, guid: 0ecafe5e135bc24469d24acde6474084, type: 3}
   brickHolder: {fileID: 83011780}
@@ -7280,22 +7280,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cb135edd388427344af2a012cc7806bb, type: 2}
   colorPlayerData: 2
   renderPlayer: {fileID: 313124271}
---- !u!54 &2020651995
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020651993}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!136 &2020651996
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7327,6 +7311,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &2020651998
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020651993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2029718243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7887,8 +7889,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5178939367815039956, guid: cf08a1f4c36e22940ab0225fbee70861, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5178939367815039962, guid: cf08a1f4c36e22940ab0225fbee70861, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178939367815039962, guid: cf08a1f4c36e22940ab0225fbee70861, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5178939367912081920, guid: cf08a1f4c36e22940ab0225fbee70861, type: 3}
       propertyPath: m_RootOrder
       value: 1

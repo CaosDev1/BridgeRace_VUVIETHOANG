@@ -5,12 +5,16 @@ using UnityEngine;
 public class Player : Character
 {
     [Header("Move Info")]
-    [SerializeField] private Rigidbody rb;
+    //[SerializeField] private Rigidbody rb;
     [SerializeField] private VariableJoystick joystick;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
     //private bool canMove = true;
     private Vector3 moveVector;
+    
+    private bool isJoystick;
+    [SerializeField] private Canvas inputCanvas;
+    [SerializeField] private CharacterController controller;
 
 
     [Header("Add Brick Info")]
@@ -32,7 +36,14 @@ public class Player : Character
 
     private void Start()
     {
+        EnnableJoystickInput();
         SetColor(colorPlayerData);
+    }
+
+    private void EnnableJoystickInput()
+    {
+        isJoystick = true;
+        inputCanvas.gameObject.SetActive(true);
     }
     private void FixedUpdate()
     {
@@ -41,18 +52,37 @@ public class Player : Character
 
     private void Move()
     {
-        moveVector = Vector3.zero;
-        moveVector.x = joystick.Horizontal * moveSpeed * Time.deltaTime;
-        moveVector.z = joystick.Vertical * moveSpeed * Time.deltaTime;
+        //moveVector = Vector3.zero;
+        //moveVector.x = joystick.Horizontal * moveSpeed * Time.deltaTime;
+        //Debug.Log(joystick.Horizontal);
+        //moveVector.z = joystick.Vertical * moveSpeed * Time.deltaTime;
 
-        //rb.velocity = new Vector3(joystick.Horizontal * moveSpeed, rb.velocity.y, joystick.Vertical * moveSpeed);
+        ////rb.velocity = new Vector3(joystick.Horizontal * moveSpeed, rb.velocity.y, joystick.Vertical * moveSpeed);
 
-        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        //if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        //{
+        //    Vector3 direction = Vector3.RotateTowards(transform.forward, moveVector, rotateSpeed * Time.deltaTime, 0.0f);
+        //    transform.rotation = Quaternion.LookRotation(direction);
+        //}else if(joystick.Horizontal == 0 &&  joystick.Vertical == 0)
+        //{
+        //    return;
+        //}
+        //rb.MovePosition(rb.position + moveVector);
+
+        if (isJoystick)
         {
-            Vector3 direction = Vector3.RotateTowards(transform.forward, moveVector, rotateSpeed * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(direction);
+            Debug.Log(joystick.Horizontal);
+            Vector3 movementDirection = new Vector3(joystick.Direction.x, 0.0f, joystick.Direction.y);
+            controller.SimpleMove(movementDirection * moveSpeed);
+
+            if (movementDirection.sqrMagnitude <= 0)
+            {
+                return;
+            }
+
+            Vector3 targetDirection = Vector3.RotateTowards(controller.transform.forward, movementDirection, rotateSpeed * Time.deltaTime, 0.0f);
+            controller.transform.rotation = Quaternion.LookRotation(targetDirection);
         }
-        rb.MovePosition(rb.position + moveVector);
     }
 
     public void AddBrick()
