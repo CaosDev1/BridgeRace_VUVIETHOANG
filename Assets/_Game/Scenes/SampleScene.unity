@@ -2148,13 +2148,14 @@ GameObject:
   m_Component:
   - component: {fileID: 488500892}
   - component: {fileID: 488500891}
+  - component: {fileID: 488500893}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &488500891
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2185,6 +2186,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488500893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488500890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f512739f0495937469a5a128f192d0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botColor: 0
+  moveSpeed: 0
 --- !u!1001 &489192585
 PrefabInstance:
   m_ObjectHideFlags: 0

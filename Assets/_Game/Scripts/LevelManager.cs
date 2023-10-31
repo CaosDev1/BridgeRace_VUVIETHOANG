@@ -6,7 +6,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private Player player;
     [SerializeField] private Transform startPos;
-    [SerializeField] private List<Transform> spawnPoint = new List<Transform>();
+    public List<Transform> spawnPoint = new List<Transform>();
     [SerializeField] private List<Transform> spawnPointState2= new List<Transform>();
     [SerializeField] private GameObject brickPrefab;
 

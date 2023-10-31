@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ColorData botColor;
+    [SerializeField] private float moveSpeed;
+    private void Update()
     {
-        
-    }
+        List<Transform> target = LevelManager.Instance.spawnPoint;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.position = Vector3.MoveTowards(transform.position, target[1].position, moveSpeed * Time.deltaTime);
     }
 }
+    
