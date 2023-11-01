@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bot : MonoBehaviour
 {
-    [SerializeField] private ColorData botColor;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] protected Vector3 movePoint;
+
+
     private void Update()
     {
-        List<Transform> target = LevelManager.Instance.spawnPoint;
-
-        transform.position = Vector3.MoveTowards(transform.position, target[1].position, moveSpeed * Time.deltaTime);
+        
+        agent.SetDestination(movePoint);
     }
 }
     

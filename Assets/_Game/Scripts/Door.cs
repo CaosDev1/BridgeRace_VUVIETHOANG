@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private BoxCollider doorBox;
+    [SerializeField] private Platform platform;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(ConstString.PLAYER_TAG))
         {
-            GameManager.Instance.ChangeStage(GameState.State2);
-            Invoke(nameof(ColoseDoor), 0.3f);
-            LevelManager.Instance.SpawnBrickState2();
+            platform.SpawnBrick();
         }
-    }
-
-    private void ColoseDoor()
-    {
-        doorBox.isTrigger = false;
     }
 }

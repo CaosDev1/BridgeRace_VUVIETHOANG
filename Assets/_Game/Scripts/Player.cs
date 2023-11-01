@@ -20,6 +20,7 @@ public class Player : Character
     public List<Transform> playerBrickList;
     [SerializeField] private Transform playerBrickPrefab;
     [SerializeField] private Transform brickHolder;
+    
 
     [Header("Color Player Info")]
     [SerializeField] private Material[] colorPlayer;
