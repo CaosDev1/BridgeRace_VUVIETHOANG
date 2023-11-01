@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5178939367912081920}
   - component: {fileID: 5178939367912081926}
-  - component: {fileID: 5178939367912081921}
+  - component: {fileID: 1017421740313431284}
   m_Layer: 0
   m_Name: Stair
   m_TagString: Stair
@@ -130,7 +130,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5178939367912081921
+--- !u!114 &1017421740313431284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5178939367912081923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f032f60ca2fc1244ca8a2c3e5568693d, type: 3}
+  m_Script: {fileID: 11500000, guid: 97d1fccc754e98e4485269caf9c078d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stairSkin: {fileID: 5178939367815039956}
@@ -149,3 +149,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3c76d7fe6141e234e969dfba55fe5784, type: 2}
   - {fileID: 2100000, guid: cb135edd388427344af2a012cc7806bb, type: 2}
   stairRender: {fileID: 5178939367815039962}
+  stairColorData: 0
+  isCollect: 0
