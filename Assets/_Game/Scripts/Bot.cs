@@ -10,7 +10,7 @@ public class Bot : Character
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Vector3 movePoint;
     [SerializeField] private LayerMask brickLayer;
-    public IState currentState;
+    private IState currentState;
 
     private void Update()
     {
@@ -53,8 +53,16 @@ public class Bot : Character
         }
     }
 
-    public void ChangeState()
+    public void ChangeState(IState newState)
     {
-
+        if(currentState != null)
+        {
+            currentState.OnExit(this);
+        }
+        currentState = newState;
+        if(currentState != null)
+        {
+            currentState.OnEnter(this);
+        }
     }
 } 

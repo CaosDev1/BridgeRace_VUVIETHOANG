@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private Platform platform;
+    [SerializeField] private Door door;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,4 +14,6 @@ public class Door : MonoBehaviour
             platform.SpawnBrick();
         }
     }
+
+    
 }

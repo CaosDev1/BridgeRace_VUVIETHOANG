@@ -394,4 +394,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd88ca8e8b0a144a96be1d1ee87f0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorBox: {fileID: 1169773899}
+  platform: {fileID: 0}
+  door: {fileID: 1169773898}
