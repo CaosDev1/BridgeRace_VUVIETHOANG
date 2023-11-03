@@ -10,29 +10,44 @@ public class Bot : Character
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Vector3 movePoint;
     [SerializeField] private LayerMask brickLayer;
-    private IState currentState;
 
+    public bool isDestination => Vector3.Distance(destination, transform.position) < 0.1f;
+    private IState currentState;
+    public Vector3 destination;
+
+    protected override void Start()
+    {
+        base.Start();
+        ChangeState(new PatrolState());
+    }
     private void Update()
     {
-        FindTarget();
+        if (currentState != null)
+        {
+            currentState.OnExecute(this);
+        }
     }
-
-    private void FindTarget()
+    public void FindTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 15f, brickLayer);
 
-        if (colliders.Length != 0)
+        if(colliders.Length != 0 ) 
         {
             for (int i = colliders.Length - 1; i >= 0; i--)
             {
                 if (colliders[i].gameObject.GetComponent<Brick>().colorData == colorPlayerData)
                 {
-                    Vector3 destination = colliders[i].transform.position;
-                    agent.SetDestination(destination);
+                    destination = colliders[i].transform.position;
                     break;
                 }
             }
         }
+        
+    }
+
+    public void MoveTarget(Vector3 destination)
+    {
+        agent.SetDestination(destination);
     }
 
     private void OnDrawGizmos()
@@ -40,17 +55,9 @@ public class Bot : Character
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 15f);
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(ConstString.BRICK_TAG))
-        {
-            Brick brick = other.GetComponent<Brick>();
-            if (colorPlayerData == brick.colorData)
-            {
-                AddBrick();
-                FindTarget();
-            }
-        }
+        base.OnTriggerEnter(other);
     }
 
     public void ChangeState(IState newState)
@@ -60,6 +67,7 @@ public class Bot : Character
             currentState.OnExit(this);
         }
         currentState = newState;
+        
         if(currentState != null)
         {
             currentState.OnEnter(this);

@@ -16,15 +16,7 @@ public class Player : Character
     //[SerializeField] private Canvas inputCanvas;
     //[SerializeField] private CharacterController controller;
 
-    public static Player Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     
-
     //private void EnnableJoystickInput()
     //{
     //    isJoystick = true;
@@ -89,18 +81,9 @@ public class Player : Character
         //}
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(ConstString.BRICK_TAG))
-        {
-            Brick brick = other.GetComponent<Brick>();
-            if (colorPlayerData == brick.colorData)
-            {
-                AddBrick();
-            }
-        }
-
+        base.OnTriggerEnter(other);
         if (other.CompareTag(ConstString.STAIR_TAG))
         {
             Stair stair = other.GetComponent<Stair>();
@@ -115,4 +98,5 @@ public class Player : Character
             }
         }
     }
+
 }

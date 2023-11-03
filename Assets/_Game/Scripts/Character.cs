@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    
+
     [Header("Add Brick Info")]
-    public List<Transform> playerBrickList;
-    [SerializeField] private Transform playerBrickPrefab;
+    public List<PlayerBrick> playerBrickList;
+    [SerializeField] private PlayerBrick playerBrickPrefab;
     [SerializeField] private Transform brickHolder;
 
     [Header("Color Player Info")]
@@ -14,8 +17,11 @@ public class Character : MonoBehaviour
     public ColorData colorPlayerData;
     [SerializeField] private MeshRenderer renderPlayer;
 
-
-    private void Start()
+    public int brickCount => playerBrickList.Count;
+    public Platform currentPlatform;
+    public Vector3 goalPos;
+    
+    protected virtual void Start()
     {
         //EnnableJoystickInput();
         SetColor(colorPlayerData);
@@ -24,21 +30,23 @@ public class Character : MonoBehaviour
     {
         int index = playerBrickList.Count;
 
-        Transform brickSpawn = Instantiate(playerBrickPrefab, brickHolder);
-        playerBrickList.Add(brickSpawn);
+        PlayerBrick playerBrick = Instantiate(playerBrickPrefab, brickHolder);
+        playerBrick.SetColor(colorPlayerData);
+        
+        playerBrickList.Add(playerBrick);
 
-        brickSpawn.localPosition = index * 0.4f * Vector3.up;
+        playerBrick.transform.localPosition = index * 0.4f * Vector3.up;
     }
 
     public void RemoveBrick()
     {
         int index = playerBrickList.Count - 1;
-        Transform brickSpawn = playerBrickList[index];
+        PlayerBrick playerBrick = playerBrickList[index];
 
         if (playerBrickList.Count >= 0)
         {
-            playerBrickList.Remove(brickSpawn);
-            Destroy(brickSpawn.gameObject);
+            playerBrickList.Remove(playerBrick);
+            Destroy(playerBrick.gameObject);
         }
     }
 
@@ -46,6 +54,20 @@ public class Character : MonoBehaviour
     {
         int index = (int)colorData;
         renderPlayer.material = colorPlayer[index];
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(ConstString.BRICK_TAG))
+        {
+            Brick brick = other.GetComponent<Brick>();
+            if (colorPlayerData == brick.colorData)
+            {
+                AddBrick();
+                brick.OnDespawn();
+                Destroy(brick.gameObject);
+            }
+        }
     }
 }
 

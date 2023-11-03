@@ -116,4 +116,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3c76d7fe6141e234e969dfba55fe5784, type: 2}
   - {fileID: 2100000, guid: cb135edd388427344af2a012cc7806bb, type: 2}
   renderBrick: {fileID: 6884630961724287462}
+  platform: {fileID: 30616006773157113, guid: a7e72b4e83d1bb64bbaab6a37d80a283, type: 3}
   colorData: 1

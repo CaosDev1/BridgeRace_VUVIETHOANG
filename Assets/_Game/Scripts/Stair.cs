@@ -11,14 +11,14 @@ public class Stair : MonoBehaviour
     public bool isCollect = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(ConstString.PLAYER_TAG) && other.GetComponent<Player>().playerBrickList.Count != 0)
+        if (other.CompareTag(ConstString.PLAYER_TAG) && other.GetComponent<Character>().playerBrickList.Count != 0)
         {
             if (!isCollect)
             {
                 //Set mau gach = mau cua nguoi choi
-                stairColorData = other.GetComponent<Player>().colorPlayerData;
+                stairColorData = other.GetComponent<Character>().colorPlayerData;
                 //Xoa gach cua nguoi choi
-                other.GetComponent<Player>().RemoveBrick();
+                other.GetComponent<Character>().RemoveBrick();
                 //Doi mau stair giong moi mau cua nguoi choi
                 SetColor(stairColorData);
                 //Hien thi stair
@@ -26,10 +26,10 @@ public class Stair : MonoBehaviour
                 //Set trang thai cho stair la da va cham roi
                 isCollect = true;
             }
-            else if (stairColorData != other.GetComponent<Player>().colorPlayerData)
+            else if (stairColorData != other.GetComponent<Character>().colorPlayerData)
             {
-                other.GetComponent<Player>().RemoveBrick();
-                stairColorData = other.GetComponent<Player>().colorPlayerData;
+                other.GetComponent<Character>().RemoveBrick();
+                stairColorData = other.GetComponent<Character>().colorPlayerData;
                 SetColor(stairColorData);
             }
 
