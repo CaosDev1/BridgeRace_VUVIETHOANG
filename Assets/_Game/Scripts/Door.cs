@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
         {
             Character character = other.GetComponent<Character>();
             character.currentPlatform = platform;
-            platform.SpawnBrick();
+            platform.SpawnBrick(character.colorPlayerData);
             isCollect = true;
         }
     }

@@ -15,19 +15,25 @@ public class Platform : MonoBehaviour
         }
     }
 
-    public void SpawnBrick()
+    public void SpawnBrick(ColorData colorType)
     {
-        for (int i = emtpyPos.Count - 1; i >= 0; i--)
+        if(emtpyPos.Count >= 0) 
         {
-            Brick brick = Instantiate(brickPrefab, emtpyPos[i], Quaternion.identity);
-            emtpyPos.RemoveAt(i);
+            for (int i = emtpyPos.Count - 1; i >= 0; i--)
+            {
+                Brick brick = Instantiate(brickPrefab, emtpyPos[i], Quaternion.identity);
+                brickPrefab.SetColor(colorType);
+                emtpyPos.RemoveAt(i);
+            }
         }
     }
 
-    public void AddEmtyPos(Vector3 postion)
+    public void EmtyPos(Vector3 brickPos)
     {
-        emtpyPos.Add(postion);
+        emtpyPos.Add(brickPos);
     }
 
+    
+    
 
 }

@@ -18,18 +18,14 @@ public class Brick : MonoBehaviour
 
     private void Start()
     {
-        colorData = (ColorData)Random.Range(0, 3);
         SetColor(colorData);
     }
 
-    private void SetColor(ColorData colorData)
+    public void SetColor(ColorData colorData)
     {
         int index = (int)colorData;
         renderBrick.material = brickColor[index];
     }
-    public void OnDespawn()
-    {
-        platform.AddEmtyPos(transform.position);
-    }
+    
 
 }

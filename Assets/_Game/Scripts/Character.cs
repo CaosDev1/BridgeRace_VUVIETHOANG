@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
     {
         int index = playerBrickList.Count - 1;
         PlayerBrick playerBrick = playerBrickList[index];
+        currentPlatform.SpawnBrick(colorPlayerData);
 
         if (playerBrickList.Count >= 0)
         {
@@ -64,8 +65,8 @@ public class Character : MonoBehaviour
             if (colorPlayerData == brick.colorData)
             {
                 AddBrick();
-                brick.OnDespawn();
                 Destroy(brick.gameObject);
+                currentPlatform.EmtyPos(brick.transform.position);
             }
         }
     }

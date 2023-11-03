@@ -15,15 +15,10 @@ public class Stair : MonoBehaviour
         {
             if (!isCollect)
             {
-                //Set mau gach = mau cua nguoi choi
                 stairColorData = other.GetComponent<Character>().colorPlayerData;
-                //Xoa gach cua nguoi choi
                 other.GetComponent<Character>().RemoveBrick();
-                //Doi mau stair giong moi mau cua nguoi choi
                 SetColor(stairColorData);
-                //Hien thi stair
                 stairSkin.SetActive(true);
-                //Set trang thai cho stair la da va cham roi
                 isCollect = true;
             }
             else if (stairColorData != other.GetComponent<Character>().colorPlayerData)
@@ -41,4 +36,5 @@ public class Stair : MonoBehaviour
         int index = (int)colorData;
         stairRender.material = stairColor[index];
     }
+    
 }

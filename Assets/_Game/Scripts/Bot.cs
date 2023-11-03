@@ -18,7 +18,7 @@ public class Bot : Character
     protected override void Start()
     {
         base.Start();
-        ChangeState(new PatrolState());
+        ChangeState(new GetBrickState());
     }
     private void Update()
     {
